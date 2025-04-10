@@ -56,7 +56,7 @@ const ModifyCampaign = ({ campaign, onDelete }) => {
 
     try {
       await axios.patch(
-        `http://localhost:3000/campaigner/campaign/view/${campaign.id}`,
+        `https://envirohelp-910201264545.asia-south1.run.app/campaigner/campaign/view/${campaign.id}`,
         formData,
         {
           headers: {
@@ -158,7 +158,7 @@ const CampaignCard = ({ campaign, onView, onDelete, onRequest }) => {
     const token = localStorage.getItem("token");
     if (!token || !searchTerm) return;
     try {
-      const res = await axios.get(`http://localhost:3000/campaigner/volunteer/${searchTerm}`, {
+      const res = await axios.get(`https://envirohelp-910201264545.asia-south1.run.app/campaigner/volunteer/${searchTerm}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setVolunteers(res.data.volunteers || []);
@@ -316,7 +316,7 @@ const CampaignerDashboard = () => {
       return;
     }
     try {
-      const res = await axios.get("http://localhost:3000/campaigner/home", {
+      const res = await axios.get("https://envirohelp-910201264545.asia-south1.run.app/campaigner/home", {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -340,7 +340,7 @@ const CampaignerDashboard = () => {
   //     return;
   //   }
   //   try {
-  //     const res = await axios.get("http://localhost:3000/campaigner/campaign", { headers: { Authorization: `Bearer ${token}` } });
+  //     const res = await axios.get("https://envirohelp-910201264545.asia-south1.run.app/campaigner/campaign", { headers: { Authorization: `Bearer ${token}` } });
   //     setAssignedCampaigns(res.data.assigned_campaigns || []);
   //     setUnassignedCampaigns(res.data.unassigned_campaigns || []);
   //   } catch (err) {
@@ -355,7 +355,7 @@ const CampaignerDashboard = () => {
       return;
     }
     try {
-      const res = await axios.get(`http://localhost:3000/campaigner/volunteer/${search}`, { headers: { Authorization: `Bearer ${token}` } });
+      const res = await axios.get(`https://envirohelp-910201264545.asia-south1.run.app/campaigner/volunteer/${search}`, { headers: { Authorization: `Bearer ${token}` } });
       setVolunteers(res.data.volunteers || []);
     } catch (err) {
       console.error("Error fetching volunteers:", err);
@@ -369,7 +369,7 @@ const CampaignerDashboard = () => {
       return;
     }
     try {
-      const res = await axios.get(`http://localhost:3000/campaigner/volunteer/view/${volunteerId}`, { headers: { Authorization: `Bearer ${token}` } });
+      const res = await axios.get(`https://envirohelp-910201264545.asia-south1.run.app/campaigner/volunteer/view/${volunteerId}`, { headers: { Authorization: `Bearer ${token}` } });
       setVolunteerDetails(res.data);
     } catch (err) {
       console.error("Error fetching volunteer details:", err);
@@ -384,7 +384,7 @@ const CampaignerDashboard = () => {
       return;
     }
     try {
-      await axios.post("http://localhost:3000/campaigner/campaign/view", { name: name, description: description, start_date: (new Date(startDate)).toISOString(), end_date: (new Date(endDate)).toISOString(), goal, contact }, { headers: { Authorization: `Bearer ${token}` } });
+      await axios.post("https://envirohelp-910201264545.asia-south1.run.app/campaigner/campaign/view", { name: name, description: description, start_date: (new Date(startDate)).toISOString(), end_date: (new Date(endDate)).toISOString(), goal, contact }, { headers: { Authorization: `Bearer ${token}` } });
       setName("");
       setDescription("");
       setStartDate("");
@@ -406,7 +406,7 @@ const CampaignerDashboard = () => {
       return null;
     }
     try {
-      const res = await axios.get(`http://localhost:3000/campaigner/campaign/view/${campaignId}`, { headers: { Authorization: `Bearer ${token}` } });
+      const res = await axios.get(`https://envirohelp-910201264545.asia-south1.run.app/campaigner/campaign/view/${campaignId}`, { headers: { Authorization: `Bearer ${token}` } });
       return res.data;
     } catch (err) {
       console.error("Error fetching campaign details:", err);
@@ -421,7 +421,7 @@ const CampaignerDashboard = () => {
       return;
     }
     try {
-      await axios.delete(`http://localhost:3000/campaigner/campaign/view/${campaignId}`, { headers: { Authorization: `Bearer ${token}` } });
+      await axios.delete(`https://envirohelp-910201264545.asia-south1.run.app/campaigner/campaign/view/${campaignId}`, { headers: { Authorization: `Bearer ${token}` } });
       alert("Campaign deleted successfully!");
       fetchCampaigns();
     } catch (err) {
@@ -437,7 +437,7 @@ const CampaignerDashboard = () => {
     }
     try {
       await axios.post(
-        `http://localhost:3000/campaigner/request/view/${campaignId}/${volunteerId}`,
+        `https://envirohelp-910201264545.asia-south1.run.app/campaigner/request/view/${campaignId}/${volunteerId}`,
         { requirements },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -456,13 +456,13 @@ const CampaignerDashboard = () => {
     }
     try {
       if (action === "approve") {
-        await axios.patch(`http://localhost:3000/campaigner/request/view/${campaignId}/${volunteerId}`, { requirements, assigned: "true" }, { headers: { Authorization: `Bearer ${token}` } });
+        await axios.patch(`https://envirohelp-910201264545.asia-south1.run.app/campaigner/request/view/${campaignId}/${volunteerId}`, { requirements, assigned: "true" }, { headers: { Authorization: `Bearer ${token}` } });
         alert("Request approved!");
       } else if (action === "delete") {
-        await axios.delete(`http://localhost:3000/campaigner/request/view/${campaignId}/${volunteerId}`, { headers: { Authorization: `Bearer ${token}` } });
+        await axios.delete(`https://envirohelp-910201264545.asia-south1.run.app/campaigner/request/view/${campaignId}/${volunteerId}`, { headers: { Authorization: `Bearer ${token}` } });
         alert("Request deleted!");
       } else if (action === "update") {
-        await axios.patch(`http://localhost:3000/campaigner/request/view/${campaignId}/${volunteerId}`, { requirements }, { headers: { Authorization: `Bearer ${token}` } });
+        await axios.patch(`https://envirohelp-910201264545.asia-south1.run.app/campaigner/request/view/${campaignId}/${volunteerId}`, { requirements }, { headers: { Authorization: `Bearer ${token}` } });
         alert("Request updated!");
       }
       fetchCampaigns();

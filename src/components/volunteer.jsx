@@ -62,7 +62,7 @@ const ProjectCard = ({ project }) => {
     if (newProgress && !isNaN(newProgress) && newProgress >= 0 && newProgress <= 100) {
       try {
         await axios.patch(
-          `http://localhost:3000/volunteer/campaign/view/${project.id}`,
+          `https://envirohelp-910201264545.asia-south1.run.app/volunteer/campaign/view/${project.id}`,
           { completion_percent: Number(newProgress) },
           {
             headers: {
@@ -116,7 +116,7 @@ const RequestCard = ({ request }) => {
   const handleAccept = async () => {
     try {
       await axios.patch(
-        `http://localhost:3000/volunteer/request/view/${request.id}`, // Changed to campaign_id
+        `https://envirohelp-910201264545.asia-south1.run.app/volunteer/request/view/${request.id}`, // Changed to campaign_id
         { 
           assigned: "true",
           requirements: request.requirements || "" // Added requirements to satisfy backend
@@ -139,7 +139,7 @@ const RequestCard = ({ request }) => {
   const handleDelete = async () => {
     try {
       await axios.delete(
-        `http://localhost:3000/volunteer/request/view/${request.id}`, // Changed to campaign_id
+        `https://envirohelp-910201264545.asia-south1.run.app/volunteer/request/view/${request.id}`, // Changed to campaign_id
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -195,7 +195,7 @@ const VolunteerDashboard = () => {
           return;
         }
 
-        const res = await axios.get("http://localhost:3000/volunteer/home", {
+        const res = await axios.get("https://envirohelp-910201264545.asia-south1.run.app/volunteer/home", {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",

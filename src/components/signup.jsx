@@ -27,7 +27,7 @@ const Signup = () => {
       return;
     }
     
-    fetch("http://localhost:3000/create_account", {
+    fetch("https://envirohelp-910201264545.asia-south1.run.app/create_account", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
